@@ -34,8 +34,8 @@ namespace appPersonas
 
         public string InsertPersondetails(PersonsDetails persons)
         {
-            SqlConnection conn = new SqlConnection("Data Source=A2NWPLSK14SQL-v05.shr.prod.iad2.secureserver.net;Initial Catalog=App-MorarciGroup-db;UID=appMorarci;PWD=51ezx&U5;MultipleActiveResultSets=True");
-            SqlConnection conn1 = new SqlConnection("Data Source=A2NWPLSK14SQL-v05.shr.prod.iad2.secureserver.net;Initial Catalog=App-MorarciGroup-db;UID=appMorarci;PWD=51ezx&U5;MultipleActiveResultSets=True");
+            SqlConnection conn = new SqlConnection("TU_CADENA_CONEXION");
+            SqlConnection conn1 = new SqlConnection("TU_CADENA_CONEXION");
             string resultado = "Proceso no realizado";
             conn.Open();
             SqlCommand cmd = new SqlCommand("insert into Personas(docIdentidad,nombres,apellidos,fechaNacimiento,fechaCreacion) values(@docIdentidad,@nombres,@apellidos,@fechaNacimiento,getdate())",conn);
@@ -140,7 +140,7 @@ namespace appPersonas
             DataSet ds = new DataSet();
             try
             {
-                SqlConnection conn = new SqlConnection("Data Source=A2NWPLSK14SQL-v05.shr.prod.iad2.secureserver.net;Initial Catalog=App-MorarciGroup-db;UID=appMorarci;PWD=51ezx&U5;MultipleActiveResultSets=True");
+                SqlConnection conn = new SqlConnection("TU_CADENA_CONEXION");
                 string sql = "select docIdentidad,nombres,apellidos,fechaNacimiento=convert(varchar(10),fechaNacimiento,103),fechaCreacion,direccion=STUFF((SELECT ', ' + direccion FROM Personas_Direcciones where docIdentidad=Personas.docIdentidad FOR XML PATH('')), 1, 1, ''),correo=isnull(STUFF((SELECT ', ' + correo FROM Personas_Correos where docIdentidad=Personas.docIdentidad FOR XML PATH('')), 1, 1, ''),''),telefonos=isnull(STUFF((SELECT ', ' + telefono FROM Personas_Telefono where docIdentidad=Personas.docIdentidad FOR XML PATH('')), 1, 1, ''),'') from Personas order by fechaCreacion desc";
 
                 SqlDataAdapter sda = new SqlDataAdapter(sql, conn);
