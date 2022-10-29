@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
@@ -18,6 +19,9 @@ namespace appPersonas
 
         [OperationContract]
         CompositeType GetDataUsingDataContract(CompositeType composite);
+
+        [OperationContract]
+        DataSet GetPersonRecords();
 
         [OperationContract]
         string InsertPersondetails(PersonsDetails persons);
@@ -53,6 +57,11 @@ namespace appPersonas
         string docIdentidad = string.Empty;
         string nombres = string.Empty;
         string apellidos = string.Empty;
+        string telefono = string.Empty;
+        string tipoTelefono = string.Empty;
+        string direccion = string.Empty;
+        string tipoDireccion = string.Empty;
+        string correo = string.Empty;
         DateTime fechaNacimiento = DateTime.Today.Date;
         [DataMember]
         public string IdentidadPerson
@@ -77,6 +86,36 @@ namespace appPersonas
         {
             get { return fechaNacimiento; }
             set { fechaNacimiento = value; }
+        }
+        [DataMember]
+        public string DireccionPerson
+        {
+            get { return direccion; }
+            set { direccion = value; }
+        }
+        [DataMember]
+        public string TipoDireccionPerson
+        {
+            get { return tipoDireccion; }
+            set { tipoDireccion = value; }
+        }
+        [DataMember]
+        public string CorreoPerson
+        {
+            get { return correo; }
+            set { correo = value; }
+        }
+        [DataMember]
+        public string TelefonoPerson
+        {
+            get { return telefono; }
+            set { telefono = value; }
+        }
+        [DataMember]
+        public string TipoTelefonoPerson
+        {
+            get { return tipoTelefono; }
+            set { tipoTelefono = value; }
         }
     }
 }
